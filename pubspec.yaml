@@ -38,6 +38,9 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   firebase_core: ^4.4.0
   firebase_auth: ^6.1.4
+  cloud_firestore: ^6.1.2
+  animate_do: ^4.2.0
+  smooth_page_indicator: ^2.0.1
 
 dev_dependencies:
   flutter_test:

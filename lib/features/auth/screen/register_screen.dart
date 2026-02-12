@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tasky/features/auth/data/firebase/auth_firebase_database.dart';
+import 'package:tasky/features/auth/data/model/user_model.dart';
 import 'package:tasky/features/auth/screen/login_screen.dart';
 import 'package:tasky/features/auth/widgets/text_form_widget.dart';
 
@@ -60,17 +62,25 @@ class _RegisterState extends State<Register> {
             SizedBox(height: 104),
             MaterialButton(
               onPressed: () async {
-                print("Register button pressed");
-                print("Username: ${usernameController.text}");
-                print("Email: ${emailController.text}");
-                print("Password: ${passwordController.text}");
-                print("Confirm Password: ${confirmPasswordController.text}");
                 try {
                   final credential = await FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
                         email: emailController.text,
                         password: passwordController.text,
                       );
+                  var userModel = UserModel(
+                    id: credential.user?.uid,
+                    userName: usernameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                  );
+
+                  await AuthFirebaseDatabase.addUser(userModel);
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
                     print('The password provided is too weak.');

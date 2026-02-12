@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tasky/features/auth/screen/register_screen.dart';
+import 'package:tasky/features/home/screen/splash_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -14,6 +15,6 @@ class TaskyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Register());
+    return MaterialApp(home: SplashScreen());
   }
 }

@@ -7,6 +7,7 @@ import 'package:tasky/features/home/screen/home_screen.dart';
 class Login extends StatefulWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  static String routeName = "Login";
 
   Login({super.key});
 
@@ -15,6 +16,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  Route route() {
+    return MaterialPageRoute(builder: (context) => Login());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
